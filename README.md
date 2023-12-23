@@ -1,3 +1,3 @@
-# Desafio-LATAM_LikeMeParteI
+# Desafio-LATAM_LikeMeParteII
 
-## Desafío Like Me Parte I - Acceso a base de datos con Node
+## Desafío Like Me Parte II - Acceso a base de datos con Node
