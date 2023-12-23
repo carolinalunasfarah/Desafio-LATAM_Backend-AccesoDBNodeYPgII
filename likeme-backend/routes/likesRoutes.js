@@ -5,14 +5,10 @@ import {
     createPosts,
     likedPosts,
     erasePosts,
-    getLikeMeConnection,
     notFound,
 } from "../src/controllers/likesController.js";
 
 const router = Router();
-
-// GET CONNECT FRONTEND
-router.get("/", getLikeMeConnection);
 
 // GET ALL REGISTERS IN TABLE posts
 router.get("/posts", getAllPosts);
