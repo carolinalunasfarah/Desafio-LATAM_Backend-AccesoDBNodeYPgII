@@ -33,10 +33,10 @@ function App() {
     }, []);
 
     return (
-        <div className="container mt-5">
+        <div className="App m-5">
             <h2 className="text-center">&#128248; Like Me &#128248;</h2>
-            <main className="row">
-                <section className="col-12 col-md-4 mt-5">
+            <dic className="row m-auto px-5">
+                <section className="col-12 col-sm-4 mt-4">
                     <div className="card bg-primary text-white">
                         <div className="card-body">
                             <h2>Add Post</h2>
@@ -44,7 +44,7 @@ function App() {
                         </div>
                     </div>
                 </section>
-                <section className="col-12 col-md-4 mt-5">
+                <section className="col-12 col-sm-8 px-5 row posts align-items-start mt-4">
                     {posts.map((post) => {
                         return (
                             <Post
@@ -64,7 +64,7 @@ function App() {
                         </div>
                     )}
                 </section>
-            </main>
+            </dic>
         </div>
     );
 }
