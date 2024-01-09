@@ -1,36 +1,97 @@
-function Form({ setTitle, setImgsrc, setDescription, addPost }) {
+import { useState } from "react";
+import { errorToast } from "../utils/toast.js";
+
+function Form({ addPost }) {
+    const [values, setValues] = useState({
+        title: "",
+        imgsrc: "",
+        description: "",
+    });
+
+    const handleChange = (e) => {
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const { title, imgsrc, description } = values;
+
+        if (!title.trim() || !imgsrc.trim() || !description.trim())
+            return errorToast("All fields are required");
+
+        const post = {
+            title: title.trim(),
+            imgsrc: imgsrc.trim(),
+            description: description.trim(),
+        };
+
+        addPost({ ...post });
+
+        setValues({
+            title: "",
+            imgsrc: "",
+            description: "",
+        });
+    };
+
     return (
-        <div className="form">
+        <form onSubmit={handleSubmit}>
             <div className="mb-2">
-                <h4>Add post</h4>
-                <label>Title</label>
+                <label htmlFor="title" className="form-label">
+                    Title
+                </label>
                 <input
+                    type="text"
                     placeholder="Enter a title"
-                    onChange={(event) => setTitle(event.target.value)}
+                    id="title"
+                    name="title"
+                    onChange={handleChange}
                     className="form-control"
+                    value={values.title}
                 />
             </div>
             <div className="mb-2">
-                <label>Image URL</label>
+                <label htmlFor="imgsrc" className="form-label">
+                    Image URL
+                </label>
                 <input
-                    placeholder="Enter the URL of your image"
-                    onChange={(event) => setImgsrc(event.target.value)}
+                    type="text"
+                    placeholder="Enter the image URL"
+                    id="imsrc"
+                    name="imgsrc"
+                    onChange={handleChange}
                     className="form-control"
+                    value={values.imgsrc}
                 />
             </div>
             <div className="mb-3">
-                <label>Description</label> <br />
+                <label htmlFor="description" className="form-label">
+                    Description
+                </label>
                 <textarea
+                    id="description"
                     placeholder="Describe yourself"
-                    onChange={(event) => setDescription(event.target.value)}
-                    className="form-control"></textarea>
+                    className="form-control"
+                    name="description"
+                    onChange={handleChange}
+                    value={values.description}
+                />
             </div>
-            <div className="d-flex">
-                <button onClick={addPost} className="btn btn-light m-auto">
-                    Add
-                </button>
-            </div>
-        </div>
+            <button
+                type="submit"
+                className="btn btn-light mx-auto d-block"
+                disabled={
+                    !values.title.trim() ||
+                    !values.imgsrc.trim() ||
+                    !values.description.trim()
+                }>
+                Add
+            </button>
+        </form>
     );
 }
 

@@ -1,37 +1,39 @@
-function Post({
-  post: { id, title, imgsrc, description, likes },
-  like,
-  erasePost,
-}) {
-  return (
-    <div className="card col-12 col-sm-4 d-inline mx-0">
-      <div className="card-body p-0 mb-3">
-        <img
-          className="card-img-top "
-          src={imgsrc}
-        />
-        <div className="p-3">
-          <h4 className="card-title">{title}</h4>
-          <p className="card-text">{description}</p>
-          <div className="d-flex justify-content-between align-items-center">
-            <div>
-              <i
-                onClick={() => like(id)}
-                className={`fa-heart fa-xl ${
-                  likes ? "fa-solid" : "fa-regular"
-                }`}
-              ></i>
-              <span className="ms-1">{likes}</span>
+import TrashIcon from "./icons/TrashIcon";
+import HeartIcon from "./icons/heart-solid";
+
+function Post({ post, likePost, erasePost }) {
+    return (
+        <article className="card mb-4">
+            <img src={post.imgsrc} alt="" className="card-img-top" />
+            <div className="card-body">
+                <h5>{post.title}</h5>
+                <p>{post.description}</p>
+                <div className="d-flex mt-3 justify-content-between align-items-center">
+                    <div>
+                        <HeartIcon
+                            fill="red"
+                            height="20"
+                            onClick={() => {
+                                likePost(post.id);
+                            }}
+                            className="cursor-pointer"
+                        />
+                        <span className="ms-2">{post.likes}</span>
+                    </div>
+                    <div>
+                        <TrashIcon
+                            fill="blue"
+                            height="20"
+                            onClick={() => {
+                                erasePost(post.id);
+                            }}
+                            className="cursor-pointer"
+                        />
+                    </div>
+                </div>
             </div>
-            <i
-              onClick={() => erasePost(id)}
-              className="fa-solid fa-x"
-            ></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+        </article>
+    );
 }
 
 export default Post;
