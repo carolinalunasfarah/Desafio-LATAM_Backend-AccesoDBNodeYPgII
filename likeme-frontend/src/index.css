@@ -7,6 +7,15 @@
     font-size: 18px;
 }
 
+.btn-light:hover {
+    transition: ease;
+    transition-duration: 2s;
+    scale: 125%;
+    background-color: blue;
+    border-color: blue;
+    color: white;
+}
+
 .card {
     border-radius: 1rem;
 }
