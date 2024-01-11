@@ -30,8 +30,12 @@ router
         res.status(405).json({ message: "method not allowed" });
     });
 
-// PUT post BY ID
-router.put("/posts/like/:id", likedPosts);
+router
+    .route("/posts/like/:id")
+    .put(likedPosts)
+    .all(function (req, res, next) {
+        res.status(405).json({ message: "method not allowed" });
+    });
 
 // NOT FOUND
 router.use("*", notFound);

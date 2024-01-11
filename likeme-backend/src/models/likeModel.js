@@ -45,7 +45,7 @@ export const createPost = async (title, imgsrc, description, likes = 0) => {
 // UPDATE post BY likes
 export const likedPost = async (id) => {
     const SQLquery = {
-        text: "UPDATE posts SET likes = (likes+1) WHERE id = $1",
+        text: "UPDATE posts SET likes = (likes+1) WHERE id = $1 RETURNING*",
         values: [id],
     };
     try {
