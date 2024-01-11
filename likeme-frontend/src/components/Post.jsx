@@ -3,14 +3,18 @@ import HeartIcon from "./icons/heart-solid";
 
 function Post({ post, likePost, erasePost }) {
     return (
-        <div className="card col-12 col-sm-4 d-inline mx-3">
-            <div className="card-body p-0 mb-3">
-                <img src={post.imgsrc} alt="" className="card-img-top" />
-                <div className="p-3">
-                    <h5 className="card-title">{post.title}</h5>
-                    <p className="card-text">{post.description}</p>
-                    <div className="d-flex mt-3 justify-content-between align-items-center">
-                        <div>
+        <div className="card postCard col-12 col-sm-4 d-inline mx-2 p-0">
+            <article>
+                <img
+                    src={post.imgsrc}
+                    alt={post.description}
+                    className="card-img-top"
+                />
+                <section className="pt-2">
+                    <h5>{post.title}</h5>
+                    <p>{post.description}</p>
+                    <section className="d-flex m-3 justify-content-between align-items-center">
+                        <article className="heartIcon">
                             <HeartIcon
                                 fill="red"
                                 height="20"
@@ -20,20 +24,20 @@ function Post({ post, likePost, erasePost }) {
                                 className="cursor-pointer"
                             />
                             <span className="ms-2">{post.likes}</span>
-                        </div>
-                        <div>
+                        </article>
+                        <article>
                             <TrashIcon
                                 fill="blue"
                                 height="20"
                                 onClick={() => {
                                     erasePost(post.id);
                                 }}
-                                className="cursor-pointer"
+                                className="cursor-pointer trashIcon"
                             />
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </article>
+                    </section>
+                </section>
+            </article>
         </div>
     );
 }

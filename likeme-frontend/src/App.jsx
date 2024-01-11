@@ -33,18 +33,18 @@ function App() {
     }, []);
 
     return (
-        <div className="App m-5">
-            <h2 className="text-center">&#128248; Like Me &#128248;</h2>
-            <dic className="row m-auto px-5">
-                <section className="col-12 col-sm-4 mt-4">
+        <div className="mt-5">
+            <h2>&#128248; Like Me &#128248;</h2>
+            <main className="row m-auto">
+                <section className="col-12 col-sm-4 mt-5">
                     <div className="card bg-primary text-white">
-                        <div className="card-body">
+                        <article className="card-body">
                             <h2>Add Post</h2>
                             <Form addPost={addPost} />
-                        </div>
+                        </article>
                     </div>
                 </section>
-                <section className="col-12 col-sm-8 px-5 row posts align-items-start mt-4">
+                <section className="col-8 col-sm-8 row align-items-start mt-5">
                     {posts.map((post) => {
                         return (
                             <Post
@@ -57,14 +57,12 @@ function App() {
                     })}
 
                     {posts.length === 0 && (
-                        <div className="card">
-                            <div className="card-body">
-                                <h4>There's no posts yet</h4>
-                            </div>
-                        </div>
+                        <article className="noPost">
+                            <h4>There's no posts yet</h4>
+                        </article>
                     )}
                 </section>
-            </dic>
+            </main>
         </div>
     );
 }

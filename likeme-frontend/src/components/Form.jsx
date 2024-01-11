@@ -40,7 +40,7 @@ function Form({ addPost }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="mb-2">
+            <section className="mb-2">
                 <label htmlFor="title" className="form-label">
                     Title
                 </label>
@@ -53,8 +53,8 @@ function Form({ addPost }) {
                     className="form-control"
                     value={values.title}
                 />
-            </div>
-            <div className="mb-2">
+            </section>
+            <section className="mb-2">
                 <label htmlFor="imgsrc" className="form-label">
                     Image URL
                 </label>
@@ -67,8 +67,8 @@ function Form({ addPost }) {
                     className="form-control"
                     value={values.imgsrc}
                 />
-            </div>
-            <div className="mb-3">
+            </section>
+            <section className="mb-3">
                 <label htmlFor="description" className="form-label">
                     Description
                 </label>
@@ -80,7 +80,7 @@ function Form({ addPost }) {
                     onChange={handleChange}
                     value={values.description}
                 />
-            </div>
+            </section>
             <button
                 type="submit"
                 className="btn btn-light mx-auto d-block"

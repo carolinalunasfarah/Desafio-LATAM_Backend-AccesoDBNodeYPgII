@@ -1,5 +1,10 @@
-body {
-    background: #f1f1f1;
+* {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.form-label {
+    font-size: 18px;
 }
 
 .card {
@@ -10,7 +15,37 @@ body {
     border-radius: 1rem 1rem 0rem 0rem;
 }
 
-.App {
-    font-family: sans-serif;
+.postCard {
+    max-width: 16rem;
+}
+
+.noPost {
+    background-color: rgba(105, 128, 255, 0.514);
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    border-radius: 1rem;
+    color: white;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.heartIcon:hover {
+    transition: ease;
+    transition-duration: 1s;
+    scale: 150%;
+}
+
+.trashIcon {
+    opacity: 50%;
+}
+.trashIcon:hover {
+    opacity: 100%;
+    transition: ease;
+    transition-duration: 3s;
+    scale: 115%;
 }
