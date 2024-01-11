@@ -59,8 +59,8 @@ export const likedPost = async (id) => {
 // UPDATE post BY title, imgsrc, description
 export const updatePost = async (id, title, imgsrc, description) => {
     const SQLquery = {
-        text: "UPDATE posts SET id = $1, title = $2, imgsrc = $3, description = $4 RETURNING *",
-        values: [id, title, imgsrc, description],
+        text: "UPDATE posts SET title = $1, imgsrc = $2, description = $3 WHERE id = $4 RETURNING *",
+        values: [title, imgsrc, description, id],
     };
     try {
         const response = await pool.query(SQLquery);
