@@ -4,6 +4,8 @@ import {
     getPostById,
     createPosts,
     likedPosts,
+    updatedPosts,
+    patchedPosts,
     erasePosts,
     notFound,
 } from "../src/controllers/likesController.js";
@@ -21,6 +23,8 @@ router.post("/posts", createPosts);
 
 // PUT post BY ID
 router.put("/posts/like/:id", likedPosts);
+router.put("/posts/:id", updatedPosts);
+router.patch("/posts/:id", patchedPosts);
 
 // DELETE post
 router.delete("/posts/:id", erasePosts);

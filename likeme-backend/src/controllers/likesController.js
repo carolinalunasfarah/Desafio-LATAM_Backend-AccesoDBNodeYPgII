@@ -3,6 +3,8 @@ import {
     getPostsById,
     createPost,
     likedPost,
+    updatePost,
+    updatePostPatch,
     erasePost,
 } from "../models/likeModel.js";
 
@@ -21,7 +23,9 @@ export const getPostById = async (req, res, next) => {
     const { id } = req.params;
     try {
         const post = await getPostsById(id);
-        res.status(200).json(post);
+        res.status(!post ? 404 : 200).json(
+            !post ? { error: "Post not found" } : post
+        );
     } catch (error) {
         next(error);
     }
@@ -34,11 +38,11 @@ export const createPosts = async (req, res, next) => {
         const newPost = await createPost(title, imgsrc, description);
         res.status(201).json(newPost);
     } catch (error) {
-        next(error)
+        next(error);
     }
 };
 
-// UPDATE post
+// UPDATE post BY likes
 export const likedPosts = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -46,7 +50,31 @@ export const likedPosts = async (req, res, next) => {
         const likePost = await likedPost(id, likes);
         res.status(200).json(likePost);
     } catch (error) {
-        next(error)
+        next(error);
+    }
+};
+
+// UPDATE post
+export const updatedPosts = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const { title, imgsrc, description } = req.body;
+        const postUpdate = await updatePost(id, title, imgsrc, description);
+        res.status(200).json(postUpdate);
+    } catch (error) {
+        next(error);
+    }
+};
+
+// UPDATE post WITH PATCH
+export const patchedPosts = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const { title, imgsrc, description } = req.body;
+        const postPatch = await updatePostPatch(id, title, imgsrc, description);
+        res.status(200).json(postPatch);
+    } catch (error) {
+        next(error);
     }
 };
 

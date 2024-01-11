@@ -56,6 +56,43 @@ export const likedPost = async (id) => {
     }
 };
 
+// UPDATE post BY title, imgsrc, description
+export const updatePost = async (id, title, imgsrc, description) => {
+    const SQLquery = {
+        text: "UPDATE posts SET id = $1, title = $2, imgsrc = $3, description = $4 RETURNING *",
+        values: [id, title, imgsrc, description],
+    };
+    try {
+        const response = await pool.query(SQLquery);
+        if (response.rowCount === 0) {
+            throw new Error("Post not found");
+        }
+        return response.rows;
+    } catch (error) {
+        throw new Error("Error updating this post: " + error.message);
+    }
+};
+
+// UPDATE post BY title, imgsrc, description USING PATCH
+export const updatePostPatch = async (id, title, imgsrc, description) => {
+    const SQLquery = {
+        text: "UPDATE posts SET title = COALESCE($1, title), imgsrc = COALESCE($2, imgsrc), description = COALESCE($3, description) WHERE id = $4 RETURNING *",
+        values: [title, imgsrc, description, id],
+    };
+    try {
+        const response = await pool.query(SQLquery);
+        if (response.rowCount === 0) {
+            throw new Error("Post not found");
+        }
+        return response.rows;
+    } catch (error) {
+        throw new Error(
+            "Error updating title, imgsrc or description of this post: " +
+                error.message
+        );
+    }
+};
+
 // DELETE post BY id
 export const erasePost = async (id) => {
     const SQLquery = {
@@ -66,6 +103,6 @@ export const erasePost = async (id) => {
         const response = await pool.query(SQLquery);
         return response.rows;
     } catch (error) {
-        throw new Error ("Error deleting post: " + error.message);
+        throw new Error("Error deleting post: " + error.message);
     }
 };
