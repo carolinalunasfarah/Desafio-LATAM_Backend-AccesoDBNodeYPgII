@@ -12,24 +12,28 @@ import {
 
 const router = Router();
 
-// GET ALL REGISTERS IN TABLE posts
-router.get("/posts", getAllPosts);
+router
+    .route("/posts")
+    .get(getAllPosts)
+    .post(createPosts)
+    .all(function (req, res, next) {
+        res.status(405).json({ message: "method not allowed" });
+    });
 
-// GET post BY ID
-router.get("/posts/:id", getPostById);
-
-// POST A NEW post
-router.post("/posts", createPosts);
+router
+    .route("/posts/:id")
+    .get(getPostById)
+    .put(updatedPosts)
+    .patch(patchedPosts)
+    .delete(erasePosts)
+    .all(function (req, res, next) {
+        res.status(405).json({ message: "method not allowed" });
+    });
 
 // PUT post BY ID
 router.put("/posts/like/:id", likedPosts);
-router.put("/posts/:id", updatedPosts);
-router.patch("/posts/:id", patchedPosts);
-
-// DELETE post
-router.delete("/posts/:id", erasePosts);
 
 // NOT FOUND
-router.all("*", notFound);
+router.use("*", notFound);
 
 export default router;
